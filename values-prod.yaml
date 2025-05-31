@@ -1,0 +1,27 @@
+grafana:
+  adminPassword: "SuperSecure123"
+  service:
+    type: LoadBalancer
+  persistence:
+    enabled: true
+    size: 5Gi
+
+prometheus:
+  prometheusSpec:
+    retention: 7d
+    maximumStartupDurationSeconds: 300
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      receiver: default
+    receivers:
+      - name: default
+        email_configs:
+          - to: "ops@example.com"
