@@ -1,87 +1,107 @@
-# 🧠 Helm Deploy Lab – Real Use Case
+# 🚀 Helm Deploy Lab
 
-This project demonstrates how to use **Helm** to deploy a production-grade monitoring stack on a real Kubernetes cluster (K3s on AWS EC2 or Minikube), complete with custom configurations, alert rules, and GitLab CI/CD integration.
+This repository demonstrates a **real-world monitoring stack deployment** using Helm on a local Kubernetes cluster (Minikube as default). 
+It’s designed to showcase production-ready DevOps workflows — even without cloud infrastructure.
 
-> 🎯 **Goal:** To prove that I don’t just run `helm install`, but understand how to integrate, customize, and operate Helm deployments in a real-world DevOps workflow.
-
----
-
-## 📦 Features
-
-| Capability                  | Description                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|
-| Kubernetes Cluster         | K3s on EC2 or Minikube (Local)                                              |
-| Helm Deployment            | Deploy Prometheus, Grafana, Alertmanager                                   |
-| Custom Values              | `values-prod.yaml` overrides retention, alert rules, persistence, ports     |
-| GitLab CI/CD               | Auto-deploy Helm charts on code push                                       |
-| Docs & Dashboard           | Markdown dashboard export + alert flow demo                                |
-| Clean Uninstall            | Script to remove release and clean up volumes                              |
+> Author: **Nuntin Padmadin**  
+> GitHub: [github.com/Nuntin](https://github.com/Nuntin)
 
 ---
 
-## 🔧 Project Structure
+## 📦 Tech Stack
 
-```bash
+| Component     | Description                             |
+|---------------|-----------------------------------------|
+| Minikube      | Lightweight Kubernetes for local testing |
+| Helm          | Kubernetes package manager               |
+| Prometheus    | Metrics and alerting                     |
+| Grafana       | Visualization and dashboards             |
+| Alertmanager  | Notification and alert routing           |
+
+---
+
+## 📁 Project Structure
+
+```
 helm-deploy-lab/
-├── k3s-bootstrap.sh          # Install K3s on EC2 instance
-├── values-prod.yaml          # Custom Helm values for Prometheus stack
-├── .gitlab-ci.yml            # CI/CD pipeline to deploy via Helm
-├── uninstall.sh              # Cleanly uninstall Helm release
+├── values-prod.yaml               # Helm values for production-like settings
+├── README.md                      # Main description and usage
 ├── docs/
-│   ├── grafana-dashboards.md # Sample dashboards and usage tips
-│   ├── minikube-monitoring.md # Real deployment walkthrough on Minikube
+│   ├── minikube-monitoring.md     # Minikube deployment walkthrough (main setup)
+│   ├── bootstrap.md               # Optional: K3s/Linux bootstrap guide
+│   ├── grafana-dashboards.md      # Dashboard examples and insights
 │   └── images/
 │       ├── grafana-sli.png
 │       └── prometheus-overview.png
-├── README.md                 # You're here
 ```
 
 ---
 
-## 🚀 How It Works
+## 🛠️ Quick Start (Minikube)
 
-1. Provision EC2 and SSH into instance *(or start Minikube locally)*
-2. Run `k3s-bootstrap.sh` *(or Minikube instructions in docs)*
-3. Add Helm repo + apply custom `values-prod.yaml`
-4. Run pipeline or local `helm upgrade --install`
-5. Access Grafana on LoadBalancer IP or via `port-forward`
+```bash
+# Start Minikube
+minikube start --memory=4096 --cpus=2
 
----
+# Add Helm repo
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
 
-## 📊 Monitoring Demo (Minikube)
+# Install the monitoring stack
+helm upgrade --install monitor prometheus-community/kube-prometheus-stack \
+  -f values-prod.yaml
 
-This project includes a full Helm deployment of kube-prometheus-stack on Minikube.  
-Below are real screenshots of Grafana & Prometheus running locally.
-
-👉 [Read full deployment guide](docs/minikube-monitoring.md)
-
-| Grafana Dashboard | Prometheus Overview |
-|-------------------|---------------------|
-| ![SLI](docs/images/grafana-sli.png) | ![Targets](docs/images/prometheus-overview.png) |
+# Forward Grafana port (default: 3000)
+kubectl port-forward svc/monitor-grafana 3000:80
+```
 
 ---
 
-## 🧰 K3s Bootstrap
+## 🔐 Grafana Login
 
-To quickly install K3s and Helm on an EC2 instance, see [k3s-bootstrap.sh](./k3s-bootstrap.sh)
-
----
-
-## 📍 Why This Matters
-
-> Most DevOps engineers know Helm exists. Fewer know how to:  
-> - Customize real values  
-> - Structure CI pipelines to auto-deploy  
-> - Design dashboard & alert rules that help operations
-
-This repo proves I’ve done it — not in theory, but in my own controlled production-like environment.
+```bash
+kubectl get secret monitor-grafana -o jsonpath="{.data.admin-password}" | base64 -d
+# username: admin
+```
 
 ---
 
-## 👤 Author – Nuntin Padmadin
+## 📚 Documentation
 
-Thai DevOps / Infra Engineer – Open to Work (Remote / Contract)
+| Topic                      | Path                                 |
+|----------------------------|--------------------------------------|
+| Minikube Walkthrough       | docs/minikube-monitoring.md          |
+| Grafana Dashboards         | docs/grafana-dashboards.md           |
+| K3s (optional, Linux only) | docs/bootstrap.md                    |
 
-📂 GitHub: [github.com/Nuntin](https://github.com/Nuntin)  
-📫 Email: nuntin.p@gmail.com  
-💼 LinkedIn: [linkedin.com/in/nuntin-padmadin-97b708145](https://www.linkedin.com/in/nuntin-padmadin-97b708145)
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="docs/images/grafana-sli.png" width="600"/>
+  <br><em>Grafana SLI Dashboard</em>
+</p>
+
+<p align="center">
+  <img src="docs/images/prometheus-overview.png" width="600"/>
+  <br><em>Prometheus Metrics Overview</em>
+</p>
+
+---
+
+## 🎯 Why This Matters
+
+Even without cloud budget or large infra, you can demonstrate **DevOps readiness** through local deployment labs. 
+This lab shows:
+
+- Helm-based production installs
+- Working Kubernetes setup (Minikube on Windows)
+- Real monitoring with Grafana + Prometheus
+- Documentation-first mindset
+
+---
+
+## 🤝 License
+
+MIT — see [LICENSE](LICENSE)
