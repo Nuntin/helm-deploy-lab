@@ -3,20 +3,20 @@
 This repository demonstrates a **real-world monitoring stack deployment** using Helm on a local Kubernetes cluster (Minikube or K3s).
 It’s designed to showcase production-ready DevOps workflows — even in a small/local environment.
 
-> Author: **Nuntin Padmadin**  
+> Author: **Nuntin Padmadin**
 > GitHub: [github.com/Nuntin](https://github.com/Nuntin)
 
 ---
 
 ## 📆 Tech Stack
 
-| Component     | Description                             |
-|---------------|-----------------------------------------|
-| K3s / Minikube| Lightweight Kubernetes distributions     |
-| Helm          | Kubernetes package manager               |
-| Prometheus    | Metrics and alerting                     |
-| Grafana       | Visualization and dashboards             |
-| Alertmanager  | Notification and alert routing           |
+| Component      | Description                          |
+| -------------- | ------------------------------------ |
+| K3s / Minikube | Lightweight Kubernetes distributions |
+| Helm           | Kubernetes package manager           |
+| Prometheus     | Metrics and alerting                 |
+| Grafana        | Visualization and dashboards         |
+| Alertmanager   | Notification and alert routing       |
 
 ---
 
@@ -27,13 +27,18 @@ helm-deploy-lab/
 ├── values-prod.yaml               # Helm values for production-like settings
 ├── k3s-bootstrap.sh               # Script to install K3s and deploy monitoring
 ├── uninstall.sh                   # Script to uninstall monitoring stack
+├── scripts/
+│   └── deploy-local.sh            # Minikube deployment automation
+├── .gitlab-ci.yml                 # GitLab CI pipeline config
 ├── README.md                      # Main description and usage
+├── LICENSE                        # MIT license
 ├── docs/
 │   ├── bootstrap.md               # K3s-based deployment guide
 │   ├── minikube-monitoring.md     # Minikube deployment walkthrough
+│   ├── deploy.md                  # General deployment guide
+│   ├── uninstall.md               # Uninstall documentation
 │   ├── grafana-dashboards.md      # Dashboard examples and insights
-│   ├── uninstall.md               # Full cleanup instructions
-│   ├── scenarios.md               # Real-world monitoring use cases
+│   ├── scenarios.md               # Real-world use cases
 │   └── images/
 │       ├── grafana-sli.png
 │       └── prometheus-overview.png
@@ -72,13 +77,14 @@ kubectl get secret monitor-grafana -o jsonpath="{.data.admin-password}" | base64
 
 ## 📚 Documentation
 
-| Topic                   | Path                                 |
-|------------------------|--------------------------------------|
-| K3s Bootstrap Guide    | docs/bootstrap.md                    |
-| Minikube Walkthrough   | docs/minikube-monitoring.md          |
-| Grafana Dashboards     | docs/grafana-dashboards.md           |
-| Uninstall Monitoring   | docs/uninstall.md                    |
-| Real-World Scenarios   | docs/scenarios.md                    |
+| Topic                | Path                        |
+| -------------------- | --------------------------- |
+| K3s Bootstrap Guide  | docs/bootstrap.md           |
+| Minikube Walkthrough | docs/minikube-monitoring.md |
+| Generic Deploy Guide | docs/deploy.md              |
+| Grafana Dashboards   | docs/grafana-dashboards.md  |
+| Uninstall Steps      | docs/uninstall.md           |
+| Use Case Scenarios   | docs/scenarios.md           |
 
 ---
 
@@ -96,16 +102,15 @@ kubectl get secret monitor-grafana -o jsonpath="{.data.admin-password}" | base64
 
 ---
 
-## 🎯 Why This Matters
+## 🌟 Why This Matters
 
-Even without cloud budget or large infra, you can demonstrate **DevOps readiness** through local deployment labs. 
+Even without cloud budget or large infra, you can demonstrate **DevOps readiness** through local deployment labs.
 This lab shows:
 
-- Helm-based production installs
-- Working Kubernetes setup (Minikube/K3s)
-- Real monitoring with Grafana + Prometheus
-- Documentation-first mindset
-- Real-world scenarios with metrics, alerts, and dashboards
+* Helm-based production installs
+* Working Kubernetes setup (Minikube/K3s)
+* Real monitoring with Grafana + Prometheus
+* Documentation-first and CI-driven development
 
 ---
 
