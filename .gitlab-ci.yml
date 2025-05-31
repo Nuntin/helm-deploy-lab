@@ -11,6 +11,16 @@ validate_yaml:
   only:
     - main
 
+helm_lint:
+  stage: validate
+  image: alpine/helm:3.14.4
+  script:
+    - helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    - helm repo update
+    - helm lint prometheus-community/kube-prometheus-stack -f values-prod.yaml
+  only:
+    - main
+
 lint_scripts:
   stage: lint
   image: koalaman/shellcheck-alpine
