@@ -1,0 +1,20 @@
+stages:
+  - validate
+  - lint
+
+validate_yaml:
+  stage: validate
+  image: alpine
+  script:
+    - apk add --no-cache yamllint
+    - yamllint values-prod.yaml
+  only:
+    - main
+
+lint_scripts:
+  stage: lint
+  image: koalaman/shellcheck-alpine
+  script:
+    - shellcheck k3s-bootstrap.sh uninstall.sh || true
+  only:
+    - main
