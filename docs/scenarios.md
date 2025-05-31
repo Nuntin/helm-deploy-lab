@@ -58,6 +58,31 @@ This lab is not just a setup demo — it simulates **production-like monitoring 
 
 ---
 
+## 📦 Scenario 5: Add Blackbox Exporter for HTTP Probes
+
+**Goal:** Monitor external endpoints or apps without modifying their code.
+
+### Example Workflow:
+- Deploy [blackbox-exporter](https://github.com/prometheus/blackbox_exporter)
+- Configure Prometheus to probe:
+  - HTTP status (200 OK)
+  - SSL expiry dates
+  - Latency of critical URLs
+
+---
+
+## 🧰 Scenario 6: Simulate On-Call Alert Workflow
+
+**Goal:** Emulate a real-world alerting and response pipeline.
+
+### Example Workflow:
+- Trigger fake alert (e.g., high CPU pod)
+- Route alert to Alertmanager with label-based routing
+- Integrate Alertmanager with webhook (e.g., Slack mock, Discord)
+- Record alert and resolution steps (like postmortem)
+
+---
+
 ## 📁 Where to Start
 
 - Edit `values-prod.yaml` to add new apps / targets
