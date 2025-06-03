@@ -1,4 +1,13 @@
-# 🚀 Helm Deploy Lab
+# 🛡️ Helm Deploy Lab – Instant Kubernetes App Deployment
+
+![Helm Ready](https://img.shields.io/badge/Helm-chart--ready-0A6EBD?logo=helm)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-lab--tested-326CE5?logo=kubernetes)
+![Minikube](https://img.shields.io/badge/Minikube-local--dev--tested-yellow?logo=linux)
+![GitLab CI](https://img.shields.io/badge/GitLab%20CI-manual--demo-blueviolet?logo=gitlab)
+![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
+![Portfolio](https://img.shields.io/badge/Portfolio-Showcase-important)
+![Open to Work](https://img.shields.io/badge/Open--to--Work-Yes-brightgreen?style=flat-square)
+
 
 This repository demonstrates a **real-world monitoring stack deployment** using Helm on a local Kubernetes cluster (Minikube or K3s).
 It’s designed to showcase production-ready DevOps workflows — even in a small/local environment.
@@ -123,3 +132,26 @@ This lab shows:
 ## 🤝 License
 
 MIT — see [LICENSE](LICENSE)
+
+---
+
+## 👤 About Me – DevOps Engineer (Open to Work)
+Hi, I'm Nuntin – a DevOps / Infrastructure Engineer from Thailand 🇹🇭
+Currently looking for new opportunities in the field of DevOps and Cloud Infrastructure.
+
+- Terraform, Ansible, GitLab CI/CD, Docker, Kubernetes
+- AWS: EC2, S3, IAM, RDS, VPC, CloudFront, Route53
+- Real use-case demo → see this repo!
+
+🏠 [All My DevOps Labs](https://github.com/nuntin?tab=repositories)
+
+💼 LinkedIn: [linkedin.com/in/nuntin-padmadin-97b708145](https://www.linkedin.com/in/nuntin-padmadin-97b708145/)
+
+📧 Email: nuntin.p@gmail.com
+
+---
+
+**SEO Keywords:**  
+`helm lab`, `k8s monitoring minikube`, `devops portfolio`, `grafana prometheus helm`, `k3s ci demo`, `open to work devops`
+
+---
